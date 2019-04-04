@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <script src="react-0.14.3/build/react.js"></script>
+        <script src="react-0.14.3/build/react-dom.js"></script>
+        <style>
+            .bordering{
+                border:solid;
+                padding:1cm;
+            }
+        </style>
+        <script>
+            class IPLTeam extends React.Component{
+                constructor(){
+                    super();
+                    this.playNames=[];
+                    this.playNames.push('M S Dhoni');
+                    this.playNames.push('Kholi');
+                    this.playNames.push('Bravo');
+                    this.playNames.push('Shane Watson');
+                    this.playNames.push('Rayudu');
+                    this.playNames.push("Raina");
+                }
+                render(){
+                    var itemElements;
+
+                    itemElements=this.playNames.map(
+                        (el,i)=> React.createElement("li",{"key":i},el)
+                    );
+
+                    /*var itemElements;
+
+                    itemElements=this.playNames.map(
+                        (el)=> React.createElement("li",null,el)
+                    );*/
+
+                    /*var itemElements;
+
+                    itemElements=this.playNames.map(
+                        function(el){
+                            return React.createElement("li",null,el);
+                        });*/
+
+                    /*var itemElements=[];  
+
+                    for(var i=0;i<this.playNames.length;i++){
+                        var data=this.playNames[i];
+                        var element=React.createElement("li",null,data);
+                        itemElements.push(element);
+                    }*/
+                    var parentElement=React.createElement("ul",{"className":"bordering"},itemElements);
+                    return parentElement;
+                }
+            }
+            function init(){
+                var iplTeam=React.createElement(IPLTeam);
+                ReactDOM.render(iplTeam,document.getElementById("output"));
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="output">
+
+        </div>
+    </body>
+</html>

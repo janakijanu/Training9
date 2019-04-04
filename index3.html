@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <style>
+        .bordering {
+            border: solid;
+            padding: 1cm;
+        }
+    </style>
+    <script src="react-0.14.3/build/react.js"></script>
+    <script src="react-0.14.3/build/react-dom.js"></script>
+    <script>
+        class Doctor extends React.Component {
+            constructor() {
+                super();
+                this.name = "Janaki";
+                this.fees = 500.00;
+                this.timing = "5 PM - 9 PM";
+                this.gender = "FEMALE"
+                this.appointments = [];
+
+                var a1 = React.createElement(Appointment, { 'name': 'janu', 'gender': 'FEMALE', 'age': 30, 'time': '5.00 PM' });
+                var a2 = React.createElement(Appointment, { 'name': 'Sheela', 'gender': 'FEMALE', 'age': 40, 'time': '6.00 PM' });
+                var a3 = React.createElement(Appointment, { 'name': 'Divya', 'gender': 'FEMALE', 'age': 30, 'time': '5.30 PM' });
+                var a4 = React.createElement(Appointment, { 'name': 'Sangi', 'gender': 'FEMALE', 'age': 40, 'time': '7.00 PM' });
+                var a5 = React.createElement(Appointment, { 'name': 'Chitra', 'gender': 'FEMALE', 'age': 30, 'time': '7.30 PM' });
+
+                this.appointments.push(a1, a2, a3, a4, a5);
+            }
+            render() {
+                var infoElement1 = React.createElement("p", null, `Name is : ${this.name}`);
+                var infoElement2 = React.createElement("p", null, `Fees is : ${this.fees}`);
+                var infoElement3 = React.createElement("p", null, `Timing is : ${this.timing}`);
+                var infoElement4 = React.createElement("p", null, `Gender is : ${this.gender}`);
+
+                var appointmentsElement = React.createElement("table", { "className": "bordering" }, this.appointments);
+
+                var inforElement = React.createElement("div", null, infoElement1, infoElement2, infoElement3, infoElement4);
+
+                var parentElement = React.createElement("div", { "className": "bordering" } , inforElement, appointmentsElement);
+
+                return parentElement;
+            }
+        }
+        class Appointment extends React.Component {
+            constructor(props) {
+                super(props);
+                this.name = this.props.name;
+                this.gender = this.props.gender;
+                this.age = this.props.age;
+                this.appointTime = this.props.time;
+            }
+            render() {
+                var cell1 = React.createElement("td", null, this.name);
+                var cell2 = React.createElement("td", null, this.gender);
+                var cell3 = React.createElement("td", null, this.age);
+                var cell4 = React.createElement("td", null, this.appointTime);
+                var rowElement = React.createElement("tr", null, cell1, cell2, cell3, cell4);
+                return rowElement;
+            }
+        }
+        function init() {
+            var DoctorElement = React.createElement(Doctor);
+            ReactDOM.render(DoctorElement, document.getElementById("rootUI"));
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <div id="rootUI">
+
+    </div>
+</body>
+
+</html>

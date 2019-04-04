@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script src="react-0.14.3/build/react.js"></script>
+        <script src="react-0.14.3/build/react-dom.js"></script>
+        <script>
+            class HelloWorld extends React.Component{
+                render(){
+                    //return "Hello World";
+                    var h1Element=React.createElement("h1",null,"HelloWorld");
+                    return h1Element;
+                }
+            }
+            function init(){
+                var element=React.createElement(HelloWorld);
+                ReactDOM.render(element,document.getElementById("rootUI"));
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="rootUI">
+
+        </div>
+    </body>
+</html>

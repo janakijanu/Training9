@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script src="react-0.14.3/build/react.js"></script>
+        <script src="react-0.14.3/build/react-dom.js"></script>
+        <style>
+            .bordering{
+                border:solid;
+                padding:1cm;
+            }
+        </style>
+        <script>
+            class Employee extends React.Component{
+                constructor(){
+                    super();
+                    this.salary=0;
+                    this.state={
+                        "basic":this.salary,
+                        "allow":0,
+                        "tax":0,
+                        "net":0
+                    };
+                    this.changeSalary=this.changeSalary.bind(this);
+                }
+
+                getAllowanceAmount(){
+                    return this.salary*0.45;
+                }
+
+                getTaxAmount(){
+                    return this.salary*0.10;
+                }
+
+                getNetAmount(){
+                    return this.salary+this.getAllowanceAmount()-this.getTaxAmount();
+                }
+
+                changeSalary(event){
+                    this.setState({"basic":event.target.value});
+                    this.setState({"allow":this.getAllowanceAmount()});
+                    this.setState({"tax":this.getTaxAmount()});
+                    this.setState({"net":this.getNetAmount()});
+                    this.forceUpdate();
+                }
+
+                render(){
+                    var inputElement=React.createElement("input", {"type" : 'text' , "onChange" :this.changeSalary},' ');
+                    var buttonElement=React.createElement("input", {"type" : 'button',"value" :'change'},' ');
+                    var outputElement1=React.createElement("p",null,this.state.basic+" ");
+                    var outputElement2=React.createElement("p",null,this.state.allow+" ");
+                    var outputElement3=React.createElement("p",null,this.state.tax+" ");
+                    var outputElement4=React.createElement("p",null,this.state.net+" ");
+                    var allElements=[inputElement, buttonElement, outputElement1, outputElement2, outputElement3, outputElement4];
+                    var parentElement=React.createElement("div",{"className" : "bordering"},allElements);
+                    return parentElement;
+                }
+            }
+            function init(){
+                var employeeElement=React.createElement(Employee);
+                ReactDOM.render(employeeElement,document.getElementById("output"));
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="output">
+
+        </div>
+    </body>
+</html>

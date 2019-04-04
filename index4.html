@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <script src="react-0.14.3/build/react.js"></script>
+        <script src="react-0.14.3/build/react-dom.js"></script>
+        <style>
+            .bordering{
+                border:solid;
+                padding:1cm;
+            }
+        </style>
+        <script>
+            class Product extends React.Component {
+                constructor(props){
+                    super(props);
+                    this.imgUrl=this.props.imgname;
+                    this.productName=this.props.name;
+                    this.price=this.props.price;
+                }
+                render(){
+                    var infoElement1=React.createElement("img",{src:this.imgUrl}," ");
+                    var infoElement2=React.createElement("p",null,`Product Name is ${this.productName}`);
+                    var infoElement3=React.createElement("p",null,`Price is ${this.price}`);
+
+                    var productElement=React.createElement("td",{ "className": "bordering" },infoElement1,infoElement2,infoElement3);
+                    //alert(this.productName)
+                    return productElement;
+                }
+            }
+
+            class ProductList extends React.Component {
+                constructor(){
+                    super();
+                    this.products=[];
+                    var p1=React.createElement(Product, {"imgname" : "images/images3/img1.jpg", "name" :"Product1", "price" :100});
+                    var p2=React.createElement(Product, {"imgname" : "images/images3/img2.jpg", "name" :"Product2", "price" :200});
+                    var p3=React.createElement(Product, {"imgname" : "images/images3/img3.jpg", "name" :"Product3", "price" :300});
+                    var p4=React.createElement(Product, {"imgname" : "images/images3/img4.jpg", "name" :"Product4", "price" :400});
+                    var p5=React.createElement(Product, {"imgname" : "images/images3/img5.jpg", "name" :"Product5", "price" :500});
+                    var p6=React.createElement(Product, {"imgname" : "images/images3/img6.jpg", "name" :"Product6", "price" :600});
+                    this.products.push(p1,p2,p3,p4,p5,p6);
+                    //alert("------"+this.products.length);
+                }
+                render(){
+                    var productsElement=React.createElement("tr", { "className": "bordering" }, this.products);
+
+                    var parentElement=React.createElement("table",{ "className": "bordering" },productsElement);
+                    return parentElement;
+                }
+            }
+            function init(){
+                var productsElements=React.createElement(ProductList);
+                ReactDOM.render(productsElements, document.getElementById("output"));
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="output">
+
+        </div>
+    </body>
+</html>
